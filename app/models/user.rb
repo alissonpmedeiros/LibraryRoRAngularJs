@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
     skip_confirmation!
   end
 
+  has_one :address
 
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
