@@ -25,8 +25,11 @@ library.run(['$rootScope', '$location', function($rootScope, $location) {
     });
 }]);
 
+
+
+
 library.config([
-    '$routeProvider', function($routeProvider, $httpProvider) {
+    '$routeProvider', function($routeProvider, $authProvider) {
         return $routeProvider.when('/', {           // HOME ROUTE
             templateUrl: "home/index.html",
             controller: "HomeController"
@@ -57,10 +60,10 @@ library.config([
         }).when('/categories', {                       //CATEGORIES ROUTES
             templateUrl: "category/index.html",
             controller:  "CategoriesController"
-        }).when('/user_login', {                             // AUTHENTICATE USER
+        }).when('/user_login', {                        // AUTHENTICATE USER
             templateUrl: "user/_login.html",
             controller:  "NavController"
-        }).when('/admin_login', {                             // AUTHENTICATE USER
+        }).when('/admin_login', {                     // AUTHENTICATE ADMIN
             templateUrl: "user/_login.html",
             controller:  "NavController"
         }).when('/user_register', {

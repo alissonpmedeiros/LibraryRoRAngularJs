@@ -1,6 +1,4 @@
 class BooksController < ApplicationController
-  before_action :athenticate_user!, except: [:index]
-
   def searchBooks
     if params[:keywords].present?
       @keywords = params[:keywords]
@@ -16,6 +14,7 @@ class BooksController < ApplicationController
   end
 
   def index
+
     @books = Book.all
 
     respond_to do |format|

@@ -1,8 +1,8 @@
 
-<header>
+<header ng-if="user.admin">
     <div class="clearfix">
         <div class="pull-right">
-            <button class="btn btn-lg btn-primary"  ng-click="newBook()">
+            <button class="btn btn-lg btn-primary" ng-show="user.id" ng-click="newBook()">
                 New Book
             </button>
         </div>
@@ -32,7 +32,8 @@
                 {{ book.title}}
             </h2>
             <div class="pull-right">
-                <buton class="btn btn-small btn-primary" ng-click="showBook(book.id)">
+                <buton class="btn btn-small btn-primary" 
+                ng-click="showBook(book.id)" ng-show="user.admin">
                     View Details...
                 </buton>
             </div>
