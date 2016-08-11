@@ -9,7 +9,7 @@ controllers.controller('HomeController', [
         }
 
         $scope.authorsIndex = function() {
-            return $location.path("/authors/");
+            return $location.path("/users/");
         }
     }
 ]);

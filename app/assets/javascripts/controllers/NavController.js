@@ -4,8 +4,6 @@ controllers = angular.module('controllers');
 controllers.controller("NavController", ['$scope', '$location',
     function($scope, $location) {
 
-
-
         $scope.$on('auth:login-error', function(ev, reason) {
           $scope.error = reason.errors[0];
         });
@@ -15,8 +13,8 @@ controllers.controller("NavController", ['$scope', '$location',
         $scope.index = function(){
             $location.path('/');
         }
-        $scope.authors = function(){
-            $location.path('/authors');
+        $scope.users = function(){
+            $location.path('/users');
         }
         $scope.books = function(){
             $location.path('/books');

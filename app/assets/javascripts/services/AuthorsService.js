@@ -1,5 +1,5 @@
 angular.module('library').factory('AuthorsService', ['$resource', function($resource) {
-    return $resource('/authors.json', {}, {
+    return $resource('/users.json', {}, {
         query:  {method: 'GET', isArray: true},
         create: {method: 'POST'},
     })
@@ -8,7 +8,7 @@ angular.module('library').factory('AuthorsService', ['$resource', function($reso
         'searchAuthors': {method: 'GET', isArray: true, params: {keywords: '@searchTerm'}}
     })
 }]).factory('AuthorService', ['$resource', function($resource) {
-    return $resource('/authors/:authorId.json', {}, {
+    return $resource('/users/:authorId.json', {}, {
         show:   {method: 'GET'},
         update: {method: 'PUT',    params: {authorId: '@id'}},
         delete: {method: 'DELETE', params: {authorId: '@id'}}

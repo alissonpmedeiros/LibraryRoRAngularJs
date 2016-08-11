@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :books
-  resources :authors
+  resources :users
   resources :categories
-  get '/search_authors', to: 'authors#searchAuthors'
+  get '/search_authors', to: 'users#searchAuthors'
   get '/search_books', to: 'books#searchBooks'
 end

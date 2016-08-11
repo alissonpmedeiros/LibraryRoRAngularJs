@@ -25,7 +25,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    render json: @book.as_json(include: :authors && :category)
+    render json: @book.as_json(include: :users && :category)
   end
 
   def create

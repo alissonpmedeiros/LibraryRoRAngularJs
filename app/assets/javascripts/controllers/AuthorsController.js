@@ -6,27 +6,27 @@ controllers.controller("AuthorsController", [
     function($scope, $routeParams, $location, $resource, AuthorsService, AuthorService, BooksService, AuthorSearchService) {
 
         $scope.search = function(searchTerm) {
-            $scope.authors = [];
+            $scope.users = [];
             $scope.loading = true;
             if (searchTerm.length < 3) {
                 return;
             }
-            $scope.authors = AuthorSearchService.searchAuthors({keywords: searchTerm});
+            $scope.users = AuthorSearchService.searchAuthors({keywords: searchTerm});
         }
 
 
 
         $scope.loadAuthors  = function() {
-            $scope.authors = [];
-            $scope.authors = AuthorsService.query();
-            //console.log($scope.authors);
+            $scope.users = [];
+            $scope.users = AuthorsService.query();
+            //console.log($scope.users);
         }
 
         $scope.deleteAuthor = function(authorId) {
             if(confirm("Are you sure that you want destroy this Author?")){
                 AuthorService.delete({authorId: authorId}, function() {
                     $scope.loadAuthors();
-                    $location.path('/authors');
+                    $location.path('/users');
                 }, function(error){
                     console.log(error);
                 });
@@ -36,7 +36,7 @@ controllers.controller("AuthorsController", [
         $scope.saveAuthor = function(){
             //console.log("Saving:" + $scope.author);
             AuthorsService.create({author: $scope.author}, function() {
-                $location.path('/authors');
+                $location.path('/users');
             }, function(error){
                 console.log(error);
             });
@@ -106,19 +106,19 @@ controllers.controller("AuthorsController", [
 
         // LINKS
         $scope.newAuthor = function() {
-            $location.path('/authors/new');
+            $location.path('/users/new');
         }
 
         $scope.showAuthor = function(authorId) {
-            $location.path('/authors/' + authorId);
+            $location.path('/users/' + authorId);
         }
 
         $scope.editAuthor = function(authorId) {
-            $location.path('/authors/' + authorId + '/edit');
+            $location.path('/users/' + authorId + '/edit');
         }
 
         $scope.back = function() {
-            $location.path('/authors');
+            $location.path('/users');
         };
 
         if($routeParams.authorId){

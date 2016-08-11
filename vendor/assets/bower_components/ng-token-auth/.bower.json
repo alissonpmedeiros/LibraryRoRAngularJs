@@ -1,7 +1,7 @@
 {
   "name": "ng-token-auth",
   "version": "0.0.29",
-  "authors": [
+  "users": [
     "Lynn Dylan Hurley <lynn.dylan.hurley@gmail.com>"
   ],
   "description": "Token based authentication system for angular js. Includes support for oauth2 authentication using Facebook, Github, and Google.",

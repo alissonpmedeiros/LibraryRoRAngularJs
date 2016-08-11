@@ -45,16 +45,16 @@ library.config([
         }).when('/books/:bookId/edit', {
             templateUrl: "book/edit.html",
             controller:  "BooksController"
-        }).when('/authors', {                       //AUTHORS ROUTES
+        }).when('/users', {                       //AUTHORS ROUTES
             templateUrl: "author/index.html",
             controller:  "AuthorsController"
-        }).when('/authors/new', {
+        }).when('/users/new', {
             templateUrl: "author/new.html",
             controller:  "AuthorsController"
-        }).when('/authors/:authorId', {
+        }).when('/users/:authorId', {
             templateUrl: "author/show.html",
             controller:  "AuthorsController"
-        }).when('/authors/:authorId/edit', {
+        }).when('/users/:authorId/edit', {
             templateUrl: "author/edit.html",
             controller:  "AuthorsController"
         }).when('/categories', {                       //CATEGORIES ROUTES
@@ -65,10 +65,10 @@ library.config([
             controller:  "NavController"
         }).when('/admin_login', {                     // AUTHENTICATE ADMIN
             templateUrl: "user/_login.html",
-            controller:  "NavController"
+            controller:  "UsersController"
         }).when('/user_register', {
             templateUrl: "user/_register.html",
-            controller:  "NavController"
+            controller:  "UsersController"
         }).otherwise({                              //OTHERWISE ROUTE
             redirectTo: '/'
         });
