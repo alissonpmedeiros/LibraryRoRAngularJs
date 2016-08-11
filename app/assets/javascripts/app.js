@@ -20,14 +20,7 @@ library = angular.module('library',
 //routes
 
 library.run(['$rootScope', '$location', function($rootScope, $location) {
-    $rootScope.$on('auth:login-success', function() {
-        $location.path('/');
-    });
 
-    $rootScope.$on('auth:registration-email-success', function(ev, message) {
-        $location.path('/');
-        alert("A registration email was sent to " + message.email);
-    });
     $rootScope.$on('auth:registration-email-error', function(ev, reason) {
         alert("Registration failed: You have to provide correct email");
     });
@@ -70,13 +63,13 @@ library.config([
             controller:  "CategoriesController"
         }).when('/user_login', {                        // AUTHENTICATE USER
             templateUrl: "user/_login.html",
-            controller:  "NavController"
+            controller:  "UsersController"
         }).when('/admin_login', {                     // AUTHENTICATE ADMIN
             templateUrl: "user/_login.html",
-            controller:  "NavController"
+            controller:  "UsersController"
         }).when('/user_register', {
             templateUrl: "user/_register.html",
-            controller:  "NavController"
+            controller:  "UsersController"
         }).otherwise({                              //OTHERWISE ROUTE
             redirectTo: '/'
         });

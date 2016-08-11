@@ -22,25 +22,24 @@
                             <label for="key" class="sr-only">Password Confirmation</label>
                             <input type="password" name="key" id="key" class="form-control" placeholder="Password Confirmation" ng-model="registrationForm.password_confirmation" required="required">
                         </div>
-                        <h1>Your Address</h1>
+                        <h1>Address</h1>
                         <div class="form-group">
-                            <label for="street" class="sr-only">Street</label>
-                            <input type="name" name="street" id="street" class="form-control" placeholder="Street"  required="required">
+                            <label for="email" class="sr-only">State</label>
+                            <select  class="form-control" ng-model="address.state" ng-options="state.id as state.name for state in states | orderBy:'name'">
+                                <option value="">Please, select a State</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="email" class="sr-only">City</label>
-                            <input type="name" name="city" id="email" class="form-control" placeholder="City"  required="required">
+                            <input type="text" name="email" id="email" class="form-control" placeholder="City" ng-model="address.city" required="required">
                         </div>
                         <div class="form-group">
-                            <label for="email" class="sr-only">State</label>
-                            <select  class="form-control" ng-model="state" ng-options="state.id as state.name for state in states | orderBy:'name'">
-                                <option value="">Please, select a State</option>
-                            </select>
-
+                            <label for="email" class="sr-only">Street</label>
+                            <input type="text" name="email" id="email" class="form-control" placeholder="Street" ng-model="address.street" required="required">
                         </div>
                         <div class="form-group">
                             <label for="email" class="sr-only">Zipcode</label>
-                            <input type="name" name="zipcode" id="email" class="form-control" placeholder="Zipcode" required="required">
+                            <input type="text" name="email" id="email" class="form-control" placeholder="Zipcode" ng-model="address.zipcode" required="required">
                         </div>
                         <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Sign Up">
                     </form>

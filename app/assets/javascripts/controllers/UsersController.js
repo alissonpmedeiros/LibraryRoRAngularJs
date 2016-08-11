@@ -2,8 +2,34 @@ var controllers;
 
 controllers = angular.module('controllers');
 controllers.controller("UsersController", [
-    '$scope', '$routeParams', '$location', '$resource', 'UsersService', 'UserService', 'UserSearchService', '$auth',
-    function($scope, $routeParams, $location, $resource, UsersService, UserService, UserSearchService, $auth) {
+    '$scope', '$routeParams', '$location', '$resource', 'UsersService', 'UserService', 'UserSearchService', '$rootScope',
+    function($scope, $routeParams, $location, $resource, UsersService, UserService, UserSearchService, $rootScope) {
+
+        $rootScope.$on('auth:registration-email-success', function(ev, message) {
+            console.log(user.id);
+            $scope.saveAddress($scope.address);
+            $location.path('/user_login');
+
+        });
+
+        $rootScope.$on('auth:auth-registration', function(ev, user) {
+
+            console.log(user.email);
+            alert('new user registered through oauth:' + user.email);
+        });
+
+        $rootScope.$on('auth:login-success', function() {
+            $location.path('/');
+        });
+
+        $scope.$on('auth:login-error', function(ev, reason) {
+            $scope.error = reason.errors[0];
+        });
+
+        $scope.$on('auth:registration-email-error', function(ev, reason) {
+            alert("Registration failed: " + reason.errors[0]);
+        });
+
 
         $scope.search = function(searchTerm) {
             $scope.users = [];
@@ -55,6 +81,10 @@ controllers.controller("UsersController", [
             }, function(error) {
                 console.log("Error:" + error);
             });
+        }
+
+        $scope.saveAddress = function(address) {
+            console.log(address);
         }
 
 
