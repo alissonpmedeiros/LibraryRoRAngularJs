@@ -6,6 +6,11 @@ class User < ActiveRecord::Base
 
   has_one :address
 
+
+
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/
+  validates :email, presence: true, :uniqueness => true, format: { with: VALID_EMAIL_REGEX }
+
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable,

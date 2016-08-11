@@ -8,13 +8,16 @@ controllers.controller("NavController", ['$scope', '$location',
           $scope.error = reason.errors[0];
         });
 
+        $scope.$on('auth:registration-email-error', function(ev, reason) {
+            alert("Registration failed: " + reason.errors[0]);
+        });
 
         // LINKS
         $scope.index = function(){
             $location.path('/');
         }
-        $scope.users = function(){
-            $location.path('/users');
+        $scope.authors = function(){
+            $location.path('/authors');
         }
         $scope.books = function(){
             $location.path('/books');

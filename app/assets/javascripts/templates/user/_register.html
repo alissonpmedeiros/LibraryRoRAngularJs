@@ -2,20 +2,25 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
+                {{error}}
                 <div class="form-wrap">
                     <h1>Sign up with your email account</h1>
-                    <form role="form" id="login-form" autocomplete="off" ng-submit="register()">
+                    <form role="form" id="login-form" autocomplete="off" ng-submit="submitRegistration(registrationForm)" ng-init="registrationForm = {}">
                         <div class="form-group">
                             <label for="email" class="sr-only">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Email" ng-model="user.email" required="required">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Email" ng-model="registrationForm.email" required="required">
                         </div>
                         <div class="form-group">
                             <label for="email" class="sr-only">Username</label>
-                            <input type="name" name="username" id="email" class="form-control" placeholder="Name" ng-model="user.username" required="required">
+                            <input type="name" name="username" id="email" class="form-control" placeholder="Name" ng-model="registrationForm.name" required="required">
                         </div>
                         <div class="form-group">
                             <label for="key" class="sr-only">Password</label>
-                            <input type="password" name="key" id="key" class="form-control" placeholder="Password" required="required">
+                            <input type="password" name="key" id="key" class="form-control" placeholder="Password" ng-model="registrationForm.password" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="key" class="sr-only">Password Confirmation</label>
+                            <input type="password" name="key" id="key" class="form-control" placeholder="Password Confirmation" ng-model="registrationForm.password_confirmation" required="required">
                         </div>
                         <h1>Your Address</h1>
                         <div class="form-group">

@@ -2,12 +2,8 @@ var controllers;
 
 controllers = angular.module('controllers');
 controllers.controller("UsersController", [
-    '$scope', '$routeParams', '$location', '$resource', 'UsersService', 'UserService', 'UserSearchService',
-    function($scope, $routeParams, $location, $resource, UsersService, UserService, UserSearchService) {
-
-        $scope.$on('auth:login-error', function(ev, reason) {
-            $scope.error = reason.errors[0];
-        });
+    '$scope', '$routeParams', '$location', '$resource', 'UsersService', 'UserService', 'UserSearchService', '$auth',
+    function($scope, $routeParams, $location, $resource, UsersService, UserService, UserSearchService, $auth) {
 
         $scope.search = function(searchTerm) {
             $scope.users = [];

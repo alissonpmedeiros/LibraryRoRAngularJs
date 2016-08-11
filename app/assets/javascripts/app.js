@@ -23,6 +23,14 @@ library.run(['$rootScope', '$location', function($rootScope, $location) {
     $rootScope.$on('auth:login-success', function() {
         $location.path('/');
     });
+
+    $rootScope.$on('auth:registration-email-success', function(ev, message) {
+        $location.path('/');
+        alert("A registration email was sent to " + message.email);
+    });
+    $rootScope.$on('auth:registration-email-error', function(ev, reason) {
+        alert("Registration failed: You have to provide correct email");
+    });
 }]);
 
 
@@ -45,16 +53,16 @@ library.config([
         }).when('/books/:bookId/edit', {
             templateUrl: "book/edit.html",
             controller:  "BooksController"
-        }).when('/users', {                       //AUTHORS ROUTES
+        }).when('/authors', {                       //AUTHORS ROUTES
             templateUrl: "author/index.html",
             controller:  "AuthorsController"
-        }).when('/users/new', {
+        }).when('/authors/new', {
             templateUrl: "author/new.html",
             controller:  "AuthorsController"
-        }).when('/users/:authorId', {
+        }).when('/authors/:authorId', {
             templateUrl: "author/show.html",
             controller:  "AuthorsController"
-        }).when('/users/:authorId/edit', {
+        }).when('/authors/:authorId/edit', {
             templateUrl: "author/edit.html",
             controller:  "AuthorsController"
         }).when('/categories', {                       //CATEGORIES ROUTES
@@ -65,10 +73,10 @@ library.config([
             controller:  "NavController"
         }).when('/admin_login', {                     // AUTHENTICATE ADMIN
             templateUrl: "user/_login.html",
-            controller:  "UsersController"
+            controller:  "NavController"
         }).when('/user_register', {
             templateUrl: "user/_register.html",
-            controller:  "UsersController"
+            controller:  "NavController"
         }).otherwise({                              //OTHERWISE ROUTE
             redirectTo: '/'
         });
