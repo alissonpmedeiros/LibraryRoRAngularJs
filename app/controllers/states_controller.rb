@@ -8,10 +8,6 @@ class StatesController < ApplicationController
     end
   end
 
-  def show
-    @state = State.find(params[:id])
-    render json: @state.as_json(include: :books)
-  end
 
   def create
     @state = State.new(state_params)
@@ -22,20 +18,6 @@ class StatesController < ApplicationController
     end
   end
 
-  def update
-    @state = State.find(params[:id])
-    if @state.update_attributes(state_params)
-      render json: @state.as_json, status: :ok
-    else
-      render json: {state: @state.errors, status: :unprocessable_entity}
-    end
-  end
-
-  def destroy
-    @state = State.find(params[:id])
-    @state.destroy
-    head :no_content
-  end
 
   private
   def state_params
