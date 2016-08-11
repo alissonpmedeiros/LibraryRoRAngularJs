@@ -2,11 +2,11 @@ var controllers;
 
 controllers = angular.module('controllers');
 controllers.controller("UsersController", [
-    '$scope', '$routeParams', '$location', '$resource', 'UsersService', 'UserService', 'UserSearchService', '$rootScope',
-    function($scope, $routeParams, $location, $resource, UsersService, UserService, UserSearchService, $rootScope) {
-
+    '$scope', '$routeParams', '$location', '$resource', 'UsersService', 'UserService', 'UserSearchService', 'StatesService', '$rootScope',
+    function($scope, $routeParams, $location, $resource, UsersService, UserService, UserSearchService, StatesService, $rootScope) {
+        $scope.states  = [];
+        $scope.states = StatesService.query();
         $rootScope.$on('auth:registration-email-success', function(ev, message) {
-            console.log(user.id);
             $scope.saveAddress($scope.address);
             $location.path('/user_login');
 

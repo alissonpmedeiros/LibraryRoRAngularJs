@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :books
   resources :authors
   resources :categories
+  resources :users
+  resources :states
   get '/search_authors', to: 'authors#searchAuthors'
   get '/search_books', to: 'books#searchBooks'
 end
