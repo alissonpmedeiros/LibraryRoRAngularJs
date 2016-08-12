@@ -10,7 +10,7 @@ class AddressesController < ApplicationController
 
   def show
     @address = Address.find(params[:id])
-    render json: @address.as_json(include: :books)
+    render json: @address.as_json
   end
 
   def create
@@ -39,6 +39,6 @@ class AddressesController < ApplicationController
 
   private
   def address_params
-    params.require(:address).permit(:street, :city, :state_id, :zipcode, :user_id)
+    params.require(:address).permit(:state_id, :city, :street, :zipcode, :user_id)
   end
 end

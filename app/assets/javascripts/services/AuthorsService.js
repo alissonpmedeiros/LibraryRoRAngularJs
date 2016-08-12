@@ -1,7 +1,7 @@
 angular.module('library').factory('AuthorsService', ['$resource', function($resource) {
     return $resource('/authors.json', {}, {
         query:  {method: 'GET', isArray: true},
-        create: {method: 'POST'},
+        create: {method: 'POST'}
     })
 }]).factory('AuthorSearchService', ['$resource', function($resource ) {
     return $resource('/search_authors.json', {}, {
