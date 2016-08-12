@@ -2,13 +2,18 @@ var controllers;
 
 controllers = angular.module('controllers');
 controllers.controller("UsersController", [
-    '$scope', '$routeParams', '$location', '$resource', 'UsersService', 'UserService', 'UserSearchService', 'StatesService', '$rootScope',
-    function($scope, $routeParams, $location, $resource, UsersService, UserService, UserSearchService, StatesService, $rootScope) {
+    '$scope', '$routeParams', '$location', '$resource', 'UsersService', 'UserService', 'UserSearchService', 'StatesService', '$rootScope', '$window', 'AddressesService',
+    function($scope, $routeParams, $location, $resource, UsersService, UserService, UserSearchService, StatesService, $rootScope, $window, AddressesService) {
         $scope.states  = [];
-        $scope.states = StatesService.query();
+        $scope.address = [];
+        $scope.states = [];
+
+
         $rootScope.$on('auth:registration-email-success', function(ev, message) {
-            $scope.saveAddress($scope.address);
-            $location.path('/user_login');
+            $location.path('/');
+            //force reload index page
+            $window.location.reload();
+
 
         });
 
@@ -83,8 +88,16 @@ controllers.controller("UsersController", [
             });
         }
 
-        $scope.saveAddress = function(address) {
-            console.log(address);
+        $scope.registerAddress = function(address) {
+            AddressesService.create({address: address}, function() {
+                console.log(address);
+            }, function(error){
+                console.log(error);
+            });
+        };
+
+        $scope.loadStates = function() {
+            $scope.states = StatesService.query();
         }
 
 
