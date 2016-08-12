@@ -70,6 +70,9 @@ library.config([
         }).when('/user_register', {
             templateUrl: "user/_register.html",
             controller:  "UsersController"
+        }).when('/register_address', {                 // REGISTER ADDRESS FOR
+            templateUrl: "user/_register_address.html",
+            controller:  "UsersController"
         }).otherwise({                              //OTHERWISE ROUTE
             redirectTo: '/'
         });

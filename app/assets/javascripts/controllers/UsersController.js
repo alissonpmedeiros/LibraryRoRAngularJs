@@ -10,9 +10,9 @@ controllers.controller("UsersController", [
 
 
         $rootScope.$on('auth:registration-email-success', function(ev, message) {
-            $location.path('/');
             //force reload index page
             $window.location.reload();
+            $location.path('/');
 
 
         });
