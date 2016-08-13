@@ -5,7 +5,7 @@ angular.module('library').factory('LoansService', ['$resource', function($resour
     })
 }]).factory('LoansSearchService', ['$resource', function($resource ) {
     return $resource('/search_loans.json', {}, {
-        'searchLoans': {method: 'GET', isArray: true, params: {keywords: '@searchTerm'}}
+        'searchLoan': {method: 'GET', isArray: true, params: {keywords: '@searchTerm'}}
     })
 }]).factory('LoanService', ['$resource', function($resource) {
     return $resource('/loans/:loanId.json', {}, {
