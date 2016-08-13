@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :users
   resources :states
   resources :addresses
+  resources :loans
   get '/search_authors', to: 'authors#searchAuthors'
   get '/search_books', to: 'books#searchBooks'
+  get '/search_loans', to: 'loans#searchLoans'
 end
