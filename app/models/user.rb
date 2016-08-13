@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   before_save -> do
     self.uid = SecureRandom.uuid
-    skip_confirmation!
   end
 
   has_one :address

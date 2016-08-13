@@ -1,46 +1,52 @@
-{{address}}
 
-<section id="login" ng-show="user.id">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                {{error}}
-                <div class="form-wrap">
-                    <h1>Address</h1>
-                    <form role="form" id="login-form" autocomplete="off"  ng-init="loadStates()">
-                        <div class="form-group">
-                            <label for="email" class="sr-only">State</label>
-                            <select  class="form-control" ng-model="address.state_id" ng-options="state.id as state.name for state in states | orderBy:'name'">
-                                <option value="">Please, select a State</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="sr-only">City</label>
-                            <input type="text" name="email" id="email" class="form-control" placeholder="City" ng-model="address.city" required="required">
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="sr-only">Street</label>
-                            <input type="text" name="email" id="email" class="form-control" placeholder="Street" ng-model="address.street" required="required">
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="sr-only">Zipcode</label>
-                            <input type="text" name="email" id="email" class="form-control" placeholder="Zipcode" ng-model="address.zipcode" required="required">
-                        </div>
-                        <button ng-click="registerAddress(address)" id="btn-login" class="btn btn-custom btn-lg btn-block">Sign Up</button>
-                        {{address}}
-                    </form>
-                    <hr>
+{{address}}
+<section>
+    <section id="login">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    {{error}}
+                    <div class="form-wrap">
+                        <h1>Address</h1>
+                        <form role="form" id="login-form" autocomplete="off" ng-init="loadStates()">
+                            <div class="form-group" >
+                                <label for="email" class="sr-only">State</label>
+                                <select  class="form-control" ng-model="address.state_id" ng-options="state.id as state.name for state in states | orderBy:'name'">
+                                    <option value="">Please, select a State</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="sr-only">City</label>
+                                <input type="text" name="email" id="email" class="form-control" placeholder="City" ng-model="address.city" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="sr-only">Street</label>
+                                <input type="text" name="email" id="email" class="form-control" placeholder="Street" ng-model="address.street" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="sr-only">Zipcode</label>
+                                <input type="text" name="email" id="email" class="form-control" placeholder="Zipcode" ng-model="address.zipcode" required="required">
+                            </div>
+                            <button class="btn btn-custom btn-lg btn-block" ng-click="registerAddress()">
+                                Sign Up
+                            </button>
+                        </form>
+                        <hr>
+                    </div>
+                </div> <!-- /.col-xs-12 -->
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </section>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p>Alisson © - 2016</p>
                 </div>
-            </div> <!-- /.col-xs-12 -->
-        </div> <!-- /.row -->
-    </div> <!-- /.container -->
-</section>
-<footer id="footer" ng-show="user.id">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <p>Alisson © - 2016</p>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
+</section>
+
+

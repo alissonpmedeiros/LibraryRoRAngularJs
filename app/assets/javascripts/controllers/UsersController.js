@@ -6,19 +6,28 @@ controllers.controller("UsersController", [
     function($scope, $routeParams, $location, $resource, UsersService, UserService, UserSearchService, StatesService, $rootScope, AddressesService, $window) {
         $scope.states = [];
 
+        $scope.updateCurrentUser = function() {
+            UserService.update({userId: $scope.user.id}, {user: $scope.user}, function() {
+            }, function(error) {
+                console.log(error);
+            });
+        }
+
         $scope.registerAddress = function() {
             $scope.address.user_id = $scope.user.id;
+            $scope.user.address_registrable = true;
+            $scope.updateCurrentUser();
+            console.log($scope.user);
             console.log($scope.address);
             AddressesService.create({address: $scope.address}, function() {
-                $window.location.reload();
+                //$window.location.reload();
                 $location.path('/');
             }, function(error){
                 console.log(error);
             });
-
         };
-
         $rootScope.$on('auth:registration-email-success', function(ev, message) {
+            console.log($scope.address);
             //force reload index page
             $window.location.reload();
             $location.path('/');
