@@ -3,15 +3,15 @@
         <h1 class="h3">Users</h1>
     </header>
     <ol class="list-group" ng-init="loadUsers()">
-        <li class="list-group-item clearfix" ng-repeat="user in users | orderBy: 'email'">
+        <li class="list-group-item clearfix" ng-repeat="user in users | filter: {admin: false}  | orderBy: 'email'">
             <h3 class="pull-right"><small class="text-uppercase">Joined </small>{{ user.created_at | date }}</h3>
             <h2 class="h3">
                 {{ user.email}}
             </h2>
             <div class="pull-right">
-                <buton class="btn btn-small btn-primary"
-                       ng-click="showUser(user.id)">
-                    View Details...
+                <buton class="btn btn-small btn-danger"
+                       ng-click="deleteUser(user.id)">
+                    Destroy User
                 </buton>
             </div>
         </li>
