@@ -20,7 +20,7 @@ controllers.controller("UsersController", [
             console.log($scope.user);
             console.log($scope.address);
             AddressesService.create({address: $scope.address}, function() {
-                //$window.location.reload();
+                $window.location.reload();
                 $location.path('/');
             }, function(error){
                 console.log(error);
@@ -36,7 +36,6 @@ controllers.controller("UsersController", [
         });
 
         $rootScope.$on('auth:auth-registration', function(ev, user) {
-
             console.log(user.email);
             alert('new user registered through oauth:' + user.email);
         });
