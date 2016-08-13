@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   def searchBooks
+    binding.pry
     if params[:keywords].present?
       @keywords = params[:keywords]
       @keywords.downcase!
