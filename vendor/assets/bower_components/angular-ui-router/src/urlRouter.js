@@ -82,7 +82,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
    *
    * app.config(function ($urlRouterProvider) {
    *   // if the path doesn't match any of the urls you configured
-   *   // otherwise will take care of routing the user to the
+   *   // otherwise will take care of routing the user_session to the
    *   // specified url
    *   $urlRouterProvider.otherwise('/index');
    *
@@ -153,7 +153,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
    * </pre>
    *
    * @param {string|object} what The incoming path that you want to redirect.
-   * @param {string|function} handler The path you want to redirect your user to.
+   * @param {string|function} handler The path you want to redirect your user_session to.
    */
   this.when = function (what, handler) {
     var redirect, handlerIsString = isString(handler);
@@ -225,14 +225,14 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
    * }).run(function ($rootScope, $urlRouter, UserService) {
    *
    *   $rootScope.$on('$locationChangeSuccess', function(e) {
-   *     // UserService is an example service for managing user state
+   *     // UserService is an example service for managing user_session state
    *     if (UserService.isLoggedIn()) return;
    *
    *     // Prevent $urlRouter's default handler from firing
    *     e.preventDefault();
    *
    *     UserService.handleLogin().then(function() {
-   *       // Once the user has logged in, sync the current URL
+   *       // Once the user_session has logged in, sync the current URL
    *       // to the router:
    *       $urlRouter.sync();
    *     });

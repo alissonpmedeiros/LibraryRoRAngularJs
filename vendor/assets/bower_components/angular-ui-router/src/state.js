@@ -721,7 +721,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
     var TransitionAborted = $q.reject(new Error('transition aborted'));
     var TransitionFailed = $q.reject(new Error('transition failed'));
 
-    // Handles the case where a state which is the target of a transition is not found, and the user
+    // Handles the case where a state which is the target of a transition is not found, and the user_session
     // can optionally retry or defer the transition
     function handleRedirect(redirect, state, params, options) {
       /**

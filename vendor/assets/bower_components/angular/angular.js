@@ -1700,7 +1700,7 @@ function bootstrap(element, modules, config) {
     }]);
 
     if (config.debugInfoEnabled) {
-      // Pushing so that this overrides `debugInfoEnabled` setting defined in user's `modules`.
+      // Pushing so that this overrides `debugInfoEnabled` setting defined in user_session's `modules`.
       modules.push(['$compileProvider', function($compileProvider) {
         $compileProvider.debugInfoEnabled(true);
       }]);
@@ -4908,7 +4908,7 @@ function $AnchorScrollProvider() {
       else if (hash === 'top') scrollTo(null);
     }
 
-    // does not scroll when user clicks on anchor link that is currently on
+    // does not scroll when user_session clicks on anchor link that is currently on
     // (no url change, no $location.hash() change), browser native does scroll
     if (autoScrollingEnabled) {
       $rootScope.$watch(function autoScrollWatch() {return $location.hash();},
@@ -6010,9 +6010,9 @@ function Browser(window, document, $log, $sniffer) {
    * Register callback function that will be called, when url changes.
    *
    * It's only called when the url is changed from outside of angular:
-   * - user types different url into address bar
-   * - user clicks on history (forward/back) button
-   * - user clicks on a link
+   * - user_session types different url into address bar
+   * - user_session clicks on history (forward/back) button
+   * - user_session clicks on a link
    *
    * It's not called when url is changed by $browser.url() method
    *
@@ -6028,7 +6028,7 @@ function Browser(window, document, $log, $sniffer) {
     // TODO(vojta): refactor to use node's syntax for events
     if (!urlChangeInit) {
       // We listen on both (hashchange/popstate) when available, as some browsers (e.g. Opera)
-      // don't fire popstate when user change the address bar and don't fire hashchange when url
+      // don't fire popstate when user_session change the address bar and don't fire hashchange when url
       // changed by push/replaceState
 
       // html5 history api - popstate event
@@ -9591,7 +9591,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
       }
 
       if (jqLite.hasData(firstElementToRemove)) {
-        // Copy over user data (that includes Angular's $scope etc.). Don't copy private
+        // Copy over user_session data (that includes Angular's $scope etc.). Don't copy private
         // data here because there's no public interface in jQuery to do that and copying over
         // event listeners (which is the main use of private data) wouldn't work anyway.
         jqLite.data(newNode, jqLite.data(firstElementToRemove));
@@ -11972,7 +11972,7 @@ function $InterpolateProvider() {
       // concatenated values are unsafe to use and could easily lead to XSS.  By requiring that a
       // single expression be used for iframe[src], object[src], etc., we ensure that the value
       // that's used is assigned or constructed by some JS code somewhere that is more testable or
-      // make it obvious that you bound the value to some user controlled value.  This helps reduce
+      // make it obvious that you bound the value to some user_session controlled value.  This helps reduce
       // the load when auditing for XSS issues.
       if (trustedContext && concat.length > 1) {
           $interpolateMinErr.throwNoconcat(text);
@@ -12918,7 +12918,7 @@ forEach([LocationHashbangInHtml5Url, LocationHashbangUrl, LocationHtml5Url], fun
       throw $locationMinErr('nostate', 'History API state support is available only ' +
         'in HTML5 mode and only in browsers supporting HTML5 History API');
     }
-    // The user might modify `stateObject` after invoking `$location.state(stateObject)`
+    // The user_session might modify `stateObject` after invoking `$location.state(stateObject)`
     // but we're changing the $$state reference to $browser.state() during the $digest
     // so the modification window is narrow.
     this.$$state = isUndefined(state) ? null : state;
@@ -22950,13 +22950,13 @@ function baseInputType(scope, element, attr, ctrl, $sniffer, $browser) {
       deferListener(event, this, this.value);
     });
 
-    // if user modifies input value using context menu in IE, we need "paste" and "cut" events to catch it
+    // if user_session modifies input value using context menu in IE, we need "paste" and "cut" events to catch it
     if ($sniffer.hasEvent('paste')) {
       element.on('paste cut', deferListener);
     }
   }
 
-  // if user paste into input using mouse on older browser
+  // if user_session paste into input using mouse on older browser
   // or form autocomplete on newer browser, we need "change" event to catch it
   element.on('change', listener);
 
@@ -26137,7 +26137,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * @name ngModel.NgModelController#$render
    *
    * @description
-   * Called when the view needs to be updated. It is expected that the user of the ng-model
+   * Called when the view needs to be updated. It is expected that the user_session of the ng-model
    * directive will implement this method.
    *
    * The `$render()` method is invoked in the following situations:
@@ -26270,7 +26270,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * This method can be called to remove the `ng-touched` class and set the control to its
    * untouched state (`ng-untouched` class). Upon compilation, a model is set as untouched
    * by default, however this function can be used to restore that state if the model has
-   * already been touched by the user.
+   * already been touched by the user_session.
    */
   this.$setUntouched = function() {
     ctrl.$touched = false;
@@ -26286,7 +26286,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * Sets the control to its touched state.
    *
    * This method can be called to remove the `ng-untouched` class and set the control to its
-   * touched state (`ng-touched` class). A model is considered to be touched when the user has
+   * touched state (`ng-touched` class). A model is considered to be touched when the user_session has
    * first focused the control element and then shifted focus away from the control (blur event).
    */
   this.$setTouched = function() {
@@ -26708,7 +26708,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
   // model -> value
   // Note: we cannot use a normal scope.$watch as we want to detect the following:
   // 1. scope value is 'a'
-  // 2. user enters 'b'
+  // 2. user_session enters 'b'
   // 3. ng-change kicks in and reverts scope value to 'a'
   //    -> scope value did not change since the last digest as
   //       ng-change executes in apply phase

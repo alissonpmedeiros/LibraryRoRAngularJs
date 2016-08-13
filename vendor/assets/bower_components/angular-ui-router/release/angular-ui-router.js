@@ -859,8 +859,8 @@ function UrlMatcher(pattern, config, parentMatcher) {
  * @example
  * The following two matchers are equivalent:
  * <pre>
- * new UrlMatcher('/user/{id}?q').concat('/details?date');
- * new UrlMatcher('/user/{id}/details?q&date');
+ * new UrlMatcher('/user_session/{id}?q').concat('/details?date');
+ * new UrlMatcher('/user_session/{id}/details?q&date');
  * </pre>
  *
  * @param {string} pattern  The pattern to append.
@@ -897,7 +897,7 @@ UrlMatcher.prototype.toString = function () {
  *
  * @example
  * <pre>
- * new UrlMatcher('/user/{id}?q&r').exec('/user/bob', {
+ * new UrlMatcher('/user_session/{id}?q&r').exec('/user_session/bob', {
  *   x: '1', q: 'hello'
  * });
  * // returns { id: 'bob', q: 'hello', r: null }
@@ -999,8 +999,8 @@ UrlMatcher.prototype.validates = function (params) {
  *
  * @example
  * <pre>
- * new UrlMatcher('/user/{id}?q').format({ id:'bob', q:'yes' });
- * // returns '/user/bob?q=yes'
+ * new UrlMatcher('/user_session/{id}?q').format({ id:'bob', q:'yes' });
+ * // returns '/user_session/bob?q=yes'
  * </pre>
  *
  * @param {Object} values  the values to substitute for the parameters in this pattern.
@@ -1507,7 +1507,7 @@ function $UrlMatcherFactory() {
    *
    *   // Matches up services to URL parameter names
    *   var services = {
-   *     user: Users,
+   *     user_session: Users,
    *     post: Posts
    *   };
    *
@@ -1539,9 +1539,9 @@ function $UrlMatcherFactory() {
    *   url: "/users",
    *   // ...
    * }).state('users.item', {
-   *   url: "/{user:dbObject}",
+   *   url: "/{user_session:dbObject}",
    *   controller: function($scope, $stateParams) {
-   *     // $stateParams.user will now be an object returned from
+   *     // $stateParams.user_session will now be an object returned from
    *     // the Users service
    *   },
    *   // ...
@@ -1835,7 +1835,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
    *
    * app.config(function ($urlRouterProvider) {
    *   // if the path doesn't match any of the urls you configured
-   *   // otherwise will take care of routing the user to the
+   *   // otherwise will take care of routing the user_session to the
    *   // specified url
    *   $urlRouterProvider.otherwise('/index');
    *
@@ -1906,7 +1906,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
    * </pre>
    *
    * @param {string|object} what The incoming path that you want to redirect.
-   * @param {string|function} handler The path you want to redirect your user to.
+   * @param {string|function} handler The path you want to redirect your user_session to.
    */
   this.when = function (what, handler) {
     var redirect, handlerIsString = isString(handler);
@@ -1978,14 +1978,14 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
    * }).run(function ($rootScope, $urlRouter, UserService) {
    *
    *   $rootScope.$on('$locationChangeSuccess', function(e) {
-   *     // UserService is an example service for managing user state
+   *     // UserService is an example service for managing user_session state
    *     if (UserService.isLoggedIn()) return;
    *
    *     // Prevent $urlRouter's default handler from firing
    *     e.preventDefault();
    *
    *     UserService.handleLogin().then(function() {
-   *       // Once the user has logged in, sync the current URL
+   *       // Once the user_session has logged in, sync the current URL
    *       // to the router:
    *       $urlRouter.sync();
    *     });
@@ -2906,7 +2906,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
     var TransitionAborted = $q.reject(new Error('transition aborted'));
     var TransitionFailed = $q.reject(new Error('transition failed'));
 
-    // Handles the case where a state which is the target of a transition is not found, and the user
+    // Handles the case where a state which is the target of a transition is not found, and the user_session
     // can optionally retry or defer the transition
     function handleRedirect(redirect, state, params, options) {
       /**

@@ -1,6 +1,6 @@
 class Address < ActiveRecord::Base
   belongs_to :state
-  belongs_to :user
+  belongs_to :user_session
 
   #accepts_nested_attributes_for :states
   #accepts_nested_attributes_for :users

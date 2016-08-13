@@ -9,7 +9,7 @@ DeviseTokenAuth.setup do |config|
   # determines how long tokens will remain valid after they are issued.
   # config.token_lifespan = 2.weeks
 
-  # Sets the max number of concurrent devices per user, which is 10 by default.
+  # Sets the max number of concurrent devices per user_session, which is 10 by default.
   # After this limit is reached, the oldest tokens will be removed.
   # config.max_number_of_devices = 10
 

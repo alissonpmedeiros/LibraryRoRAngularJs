@@ -62,17 +62,17 @@ library.config([
             templateUrl: "category/index.html",
             controller:  "CategoriesController"
         }).when('/user_login', {                        // AUTHENTICATE USER
-            templateUrl: "user/_login.html",
-            controller:  "UsersController"
+            templateUrl: "user_session/_login.html",
+            controller:  "UsersSessionController"
         }).when('/admin_login', {                     // AUTHENTICATE ADMIN
-            templateUrl: "user/_login.html",
-            controller:  "UsersController"
+            templateUrl: "user_session/_login.html",
+            controller:  "UsersSessionController"
         }).when('/user_register', {
-            templateUrl: "user/_register.html",
-            controller:  "UsersController"
+            templateUrl: "user_session/_register.html",
+            controller:  "UsersSessionController"
         }).when('/register_address', {                 // REGISTER ADDRESS FOR
-            templateUrl: "user/_register_address.html",
-            controller:  "UsersController"
+            templateUrl: "user_session/_register_address.html",
+            controller:  "UsersSessionController"
         }).otherwise({                              //OTHERWISE ROUTE
             redirectTo: '/'
         });

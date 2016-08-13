@@ -188,8 +188,8 @@ function UrlMatcher(pattern, config, parentMatcher) {
  * @example
  * The following two matchers are equivalent:
  * <pre>
- * new UrlMatcher('/user/{id}?q').concat('/details?date');
- * new UrlMatcher('/user/{id}/details?q&date');
+ * new UrlMatcher('/user_session/{id}?q').concat('/details?date');
+ * new UrlMatcher('/user_session/{id}/details?q&date');
  * </pre>
  *
  * @param {string} pattern  The pattern to append.
@@ -226,7 +226,7 @@ UrlMatcher.prototype.toString = function () {
  *
  * @example
  * <pre>
- * new UrlMatcher('/user/{id}?q&r').exec('/user/bob', {
+ * new UrlMatcher('/user_session/{id}?q&r').exec('/user_session/bob', {
  *   x: '1', q: 'hello'
  * });
  * // returns { id: 'bob', q: 'hello', r: null }
@@ -328,8 +328,8 @@ UrlMatcher.prototype.validates = function (params) {
  *
  * @example
  * <pre>
- * new UrlMatcher('/user/{id}?q').format({ id:'bob', q:'yes' });
- * // returns '/user/bob?q=yes'
+ * new UrlMatcher('/user_session/{id}?q').format({ id:'bob', q:'yes' });
+ * // returns '/user_session/bob?q=yes'
  * </pre>
  *
  * @param {Object} values  the values to substitute for the parameters in this pattern.
@@ -836,7 +836,7 @@ function $UrlMatcherFactory() {
    *
    *   // Matches up services to URL parameter names
    *   var services = {
-   *     user: Users,
+   *     user_session: Users,
    *     post: Posts
    *   };
    *
@@ -868,9 +868,9 @@ function $UrlMatcherFactory() {
    *   url: "/users",
    *   // ...
    * }).state('users.item', {
-   *   url: "/{user:dbObject}",
+   *   url: "/{user_session:dbObject}",
    *   controller: function($scope, $stateParams) {
-   *     // $stateParams.user will now be an object returned from
+   *     // $stateParams.user_session will now be an object returned from
    *     // the Users service
    *   },
    *   // ...

@@ -1,11 +1,10 @@
 var controllers;
 
 controllers = angular.module('controllers');
-controllers.controller("UsersController", [
+controllers.controller("UsersSessionController", [
     '$scope', '$routeParams', '$location', '$resource', 'UsersService', 'UserService', 'UserSearchService', 'StatesService', '$rootScope', 'AddressesService', '$window',
     function($scope, $routeParams, $location, $resource, UsersService, UserService, UserSearchService, StatesService, $rootScope, AddressesService, $window) {
         $scope.states = [];
-
         $scope.updateCurrentUser = function() {
             UserService.update({userId: $scope.user.id}, {user: $scope.user}, function() {
             }, function(error) {
@@ -17,27 +16,25 @@ controllers.controller("UsersController", [
             $scope.address.user_id = $scope.user.id;
             $scope.user.address_registrable = true;
             $scope.updateCurrentUser();
-            console.log($scope.user);
-            console.log($scope.address);
             AddressesService.create({address: $scope.address}, function() {
-                $window.location.reload();
                 $location.path('/');
+                $window.location.reload();
             }, function(error){
                 console.log(error);
             });
         };
         $rootScope.$on('auth:registration-email-success', function(ev, message) {
             console.log($scope.address);
+            $location.path('/');
             //force reload index page
             $window.location.reload();
-            $location.path('/');
 
 
         });
 
         $rootScope.$on('auth:auth-registration', function(ev, user) {
             console.log(user.email);
-            alert('new user registered through oauth:' + user.email);
+            alert('new user_session registered through oauth:' + user.email);
         });
 
         $rootScope.$on('auth:login-success', function() {
