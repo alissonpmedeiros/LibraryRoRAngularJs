@@ -128,7 +128,5 @@ controllers.controller("UsersSessionController", [
         if($routeParams.userId){
             $scope.findUser();
         }
-
-
     }
 ]);

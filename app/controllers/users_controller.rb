@@ -1,4 +1,15 @@
 class UsersController < ApplicationController
+
+  def index
+    @users = User.where(["admin = ? and address_registrable = ?", "false", "true"])
+
+
+    respond_to do |format|
+      format.html {}
+      format.json {render json: @users}
+    end
+  end
+
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
