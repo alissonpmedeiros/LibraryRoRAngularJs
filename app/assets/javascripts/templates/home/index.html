@@ -1,2 +1,13 @@
-<h1 class="h2">Welcome</h1>
-{{user}}
+<br><br><br><br>
+<div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1 class="panel-title text-center"><h1 class="h1 text-center">Welcome</h1></h1>
+        </div>
+        <div class="panel-body" ng-if="user.id">
+            <h3 class="h3">Email: <i><b>{{user.email}}</b></i></h3>
+
+        </div>
+        <br>
+    </div>
+</div>

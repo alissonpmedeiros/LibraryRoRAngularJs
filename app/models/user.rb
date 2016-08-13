@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
     self.uid = SecureRandom.uuid
   end
 
+  has_many :loans
   has_one :address
 
 
