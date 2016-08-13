@@ -64,16 +64,19 @@ library.config([
         }).when('/user_login', {                        // AUTHENTICATE USER
             templateUrl: "user_session/_login.html",
             controller:  "UsersSessionController"
-        }).when('/admin_login', {                     // AUTHENTICATE ADMIN
+        }).when('/admin_login', {                       // AUTHENTICATE ADMIN
             templateUrl: "user_session/_login.html",
             controller:  "UsersSessionController"
         }).when('/user_register', {
             templateUrl: "user_session/_register.html",
             controller:  "UsersSessionController"
-        }).when('/register_address', {                 // REGISTER ADDRESS FOR
+        }).when('/users', {                             // USERS
+            templateUrl: "user/index.html",
+            controller:  "UsersController"
+        }).when('/register_address', {                  // REGISTER ADDRESS FOR
             templateUrl: "user_session/_register_address.html",
             controller:  "UsersSessionController"
-        }).otherwise({                              //OTHERWISE ROUTE
+        }).otherwise({                                  //OTHERWISE ROUTE
             redirectTo: '/'
         });
     }

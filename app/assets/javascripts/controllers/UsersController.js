@@ -1,7 +1,7 @@
 var controllers;
 
 controllers = angular.module('controllers');
-controllers.controller("UsersSessionController", [
+controllers.controller("UsersController", [
     '$scope', '$routeParams', '$location', '$resource', 'UsersService', 'UserService', 'UserSearchService',
     function($scope, $routeParams, $location, $resource, UsersService, UserService, UserSearchService) {
         $scope.users = [];
@@ -16,7 +16,6 @@ controllers.controller("UsersSessionController", [
 
 
         $scope.loadUsers  = function() {
-            $scope.users = [];
             $scope.users = UsersService.query();
             //console.log($scope.users);
         }
