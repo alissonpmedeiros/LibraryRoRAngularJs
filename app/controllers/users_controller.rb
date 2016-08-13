@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.where(["admin = ? and address_registrable = ?", "false", "true"])
-
-
+    @users = User.all
     respond_to do |format|
       format.html {}
       format.json {render json: @users}
