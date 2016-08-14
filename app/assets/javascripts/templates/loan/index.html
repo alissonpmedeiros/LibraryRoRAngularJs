@@ -1,0 +1,31 @@
+<section ng-show="user.admin">
+    <header>
+        <div class="clearfix">
+            <div class="pull-right">
+                <button class="btn btn-lg btn-primary" ng-click="newLoan()">
+                    New Loan
+                </button>
+                <button class="btn btn-lg btn-default">
+                    Find Loan
+                </button>
+            </div>
+            <h2 class="h2">Listing Loans</h2>
+        </div>
+    </header>
+
+    <section class="search-results" ng-if = "loans.length > 0">
+        <ol class="list-group">
+            <li class="list-group-item clearfix" ng-repeat="loan in loans">
+                <h3 class="pull-right"><small class="text-uppercase">Created </small>{{ loan.created_at | date }}</h3>
+                <h2 class="h3">
+                    {{ loan.book_id }} {{ loan.user_id}}
+                </h2>
+                <div class="pull-right">
+                    <buton class="btn btn-small btn-primary" ng-click="showLoan(loan.id)">
+                        View Details...
+                    </buton>
+                </div>
+            </li>
+        </ol>
+    </section>
+</section>

@@ -77,7 +77,7 @@ library.config([
             templateUrl: "user_session/_register_address.html",
             controller:  "UsersSessionController"
         }).when('/loans', {                             // LOANS
-            templateUrl: "loans/index.html",
+            templateUrl: "loan/index.html",
             controller:  "LoansController"
         }).otherwise({                                  //OTHERWISE ROUTE
             redirectTo: '/'

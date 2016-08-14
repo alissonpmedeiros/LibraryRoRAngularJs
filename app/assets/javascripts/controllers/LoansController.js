@@ -69,6 +69,7 @@ controllers.controller("LoansController", [
             $scope.findLoan();
         }
 
+        $scope.loadLoans();
 
     }
 ]);
