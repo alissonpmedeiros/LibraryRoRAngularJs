@@ -18,7 +18,7 @@
             <li class="list-group-item clearfix" ng-repeat="loan in loans">
                 <h3 class="pull-right"><small class="text-uppercase">Created </small>{{ loan.created_at | date }}</h3>
                 <h2 class="h3">
-                    {{ loan.book_id }} {{ loan.user_id}}
+                    Admin:{{loan.admin_id}}, User:{{ loan.user_id}} and Book:{{ loan.book_id }}
                 </h2>
                 <div class="pull-right">
                     <buton class="btn btn-small btn-primary" ng-click="showLoan(loan.id)">
