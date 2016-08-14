@@ -15,7 +15,7 @@
 
     <section class="search-results" ng-if = "loans.length > 0">
         <ol class="list-group">
-            <li class="list-group-item clearfix" ng-repeat="loan in loans">
+            <li class="list-group-item clearfix" ng-repeat="loan in loans | orderBy: '-created_at'">
                 <h3 class=""><small class="text-uppercase">Created </small>{{ loan.created_at | date }}</h3>
 
                 <div class="pull-right">

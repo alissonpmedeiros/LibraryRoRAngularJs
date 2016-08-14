@@ -2,8 +2,8 @@ var controllers;
 
 controllers = angular.module('controllers');
 controllers.controller("LoansController", [
-    '$scope', '$routeParams', '$location', '$resource', 'LoansService', 'LoanService','LoansSearchService',
-    function($scope, $routeParams, $location, $resource, LoansService, LoanService, LoansSearchService) {
+    '$scope', '$routeParams', '$location', '$resource', 'LoansService', 'LoanService','LoansSearchService', 'UsersService', 'BooksService',
+    function($scope, $routeParams, $location, $resource, LoansService, LoanService, LoansSearchService, UsersService, BooksService) {
         $scope.searchLoan = function(searchTerm) {
             $scope.loans= [];
             $scope.loading = true;
@@ -18,6 +18,16 @@ controllers.controller("LoansController", [
             $scope.loans = LoansService.query();
         };
 
+        $scope.loadUsers = function() {
+            $scope.users = [];
+            $scope.users = UsersService.query();
+        }
+
+        $scope.loadBooks = function() {
+            $scope.books = [];
+            $scope.books = BooksService.query();
+        }
+
         $scope.deleteLoan = function(loanId){
             if(confirm("Are you sure that you want destroy this Loan?")){
                 LoanService.delete({loanId: loanId}, function() {
@@ -30,6 +40,7 @@ controllers.controller("LoansController", [
         };
 
         $scope.saveLoan = function() {
+            $scope.loan.admin_id = $scope.user.id;
             LoansService.create({loan: $scope.loan}, function() {
                 $location.path('/loans');
             }, function(error){
