@@ -65,6 +65,7 @@ controllers.controller("BooksController", [
 
         // LINKS
         $scope.newBook = function() {
+            $delete($scope.book);
             $location.path('/books/new');
 
         }
