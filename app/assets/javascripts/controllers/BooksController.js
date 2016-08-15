@@ -49,6 +49,7 @@ controllers.controller("BooksController", [
 
         $scope.updateBook = function() {
             BookService.update({bookId: $scope.book.id}, {book: $scope.book}, function() {
+                console.log($scope.book);
                 $location.path('/books');
             }, function(error){
                 console.log(error);

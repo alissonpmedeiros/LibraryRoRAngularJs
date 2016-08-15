@@ -8,7 +8,7 @@
                 <div class="form-group" ng-init="loadUsers()" >
                     <label class="col-md-1 control-label col-md-offset-1"></label>
                     <div class="col-md-8">
-                        <select  class="form-control" ng-model="loan.user_id" ng-options="user.id as user.email for user in users | filter: {admin: false} | orderBy:'email'">
+                        <select name="user" required="required" class="form-control" ng-model="loan.user_id" ng-options="user.id as user.email for user in users | filter: {admin: false} | orderBy:'email'">
                             <option value="">Please, select a User</option>
                         </select>
                     </div>
@@ -16,15 +16,16 @@
                 <div class="form-group" ng-init="loadBooks()" >
                     <label class="col-md-1 control-label col-md-offset-1"></label>
                     <div class="col-md-8">
-                        <select  class="form-control" ng-model="loan.book_id" ng-options="book.id as book.title for book in books | orderBy:'title'">
+                        <select name="book"  class="form-control" ng-model="loan.book_id" ng-options="book.id as book.title for book in books | orderBy:'title'">
                             <option value="">Please, select a Book</option>
                         </select>
                     </div>
                 </div>
-                <div class="form-group" >
+                <div class="form-group">
                     <label class="col-md-1 control-label col-md-offset-1"></label>
                     <dov class="col-md-8">
-                        <button ng-click="saveLoan()" class="col-md-12 btn btn-primary btn-lg">
+                        <button ng-disabled="LoanForm.$invalid"
+                                ng-click="saveLoan()" class="col-md-12 btn btn-primary btn-lg">
                             Save Loan
                         </button>
                     </dov>

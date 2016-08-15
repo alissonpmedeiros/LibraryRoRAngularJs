@@ -13,9 +13,13 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       render json: @user.as_json, status: :ok
     else
-      render json: {book: @book.errors, status: :unprocessable_entity}
+      render json: {user: @user.errors, status: :unprocessable_entity}
     end
+  end
 
+  def show
+    @user = User.find(params[:id])
+    render json: @user.as_json
   end
 
   def destroy
@@ -30,7 +34,7 @@ class UsersController < ApplicationController
                                          :reset_password_sent_at, :remember_created_at, :sign_in_count,
                                          :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip,
                                          :last_sign_in_ip, :name, :nickname, :image, :email, :tokens,
-                                         :address_registrable)
+                                         :address_registrable, :number_loans)
   end
 
 
