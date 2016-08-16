@@ -58,8 +58,19 @@ controllers.controller("LoansController", [
             $scope.userFind = UserService.get({userId: $scope.loan.user_id});
 
             $scope.valid;
+            $scope.bookValid = true;
             $scope.userFind.$promise.then(function(data){
-                if(data.number_loans < 5 && $scope.loan.book.quantity > 0){
+
+                console.log("USER LOANS: ");
+                console.log(data);
+                data.loans.forEach(function(loan, key) {
+                    if(loan.book_id === $scope.loan.book.id ){
+                        $scope.bookValid = false;
+                        return;
+                    }
+                });
+
+                if(data.number_loans < 5 && $scope.loan.book.quantity > 0 && $scope.bookValid){
                     $scope.valid = true;
                     $scope.userFindId = data.id;
 
@@ -79,7 +90,13 @@ controllers.controller("LoansController", [
                     $scope.updateUser();
                     $scope.updateBook();
 
-                    LoansService.create({loan: $scope.loan}, function() {
+                    $scope.newLoanScope = $scope.loan;
+                    $scope.newLoanScope.user_id = data.id;
+                    $scope.newLoanScope.book_id = $scope.loan.book.id;
+                    $scope.newLoanScope.admin_id = $scope.user.id;
+                    console.log($scope.newLoanScope);
+
+                    LoansService.create({loan: $scope.newLoanScope}, function() {
                         $location.path('/loans');
                     }, function(error){
                         console.log(error);
@@ -90,6 +107,8 @@ controllers.controller("LoansController", [
                 else if(data.number_loans === 5){
                     alert("This user have 5 loans and is permited just 5 loans per user!");
                 }
+                else if(!$scope.bookValid)
+                    alert("This user has already borrowed the selected book!");
                 else {
                     alert("There isn't no other books for loaned");
                 }
