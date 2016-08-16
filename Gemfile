@@ -12,7 +12,6 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'puma'
 
-gem 'pry', '~> 0.10.4'
 
 gem 'sass'
 gem 'bower-rails'
@@ -28,5 +27,6 @@ end
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'pry', '~> 0.10.4'
 end
 

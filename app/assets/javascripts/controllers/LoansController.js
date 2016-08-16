@@ -2,8 +2,8 @@ var controllers;
 
 controllers = angular.module('controllers');
 controllers.controller("LoansController", [
-    '$scope', '$routeParams', '$location', '$resource', 'LoansService', 'LoanService','LoansSearchService', 'UsersService', 'UserService', 'BooksService',
-    function($scope, $routeParams, $location, $resource, LoansService, LoanService, LoansSearchService, UsersService, UserService, BooksService) {
+    '$scope', '$routeParams', '$location', '$resource', 'LoansService', 'LoanService','LoansSearchService', 'UsersService', 'UserService', 'BooksService', 'BookService',
+    function($scope, $routeParams, $location, $resource, LoansService, LoanService, LoansSearchService, UsersService, UserService, BooksService, BookService) {
         $scope.searchLoan = function(searchTerm) {
             $scope.loans= [];
             $scope.loading = true;
@@ -40,27 +40,11 @@ controllers.controller("LoansController", [
             }
         };
 
-        $scope.findUser = function() {
-            $scope.userFind = UserService.get({userId: $scope.loan.user_id});
-            $scope.userFindId;
-            $scope.userFindNumLoans;
-            $scope.userFind.$promise.then(function(data){
-                $scope.userFindId = data.id;
-                $scope.userFindNumLoans = data.number_loans;
-                console.log("user selected loans: " + $scope.userFindNumLoans);
+        $scope.updateBook = function() {
+            BookService.update({bookId: $scope.loan.book.id}, {book: $scope.loan.book}, function() {
+            }, function(error){
+                console.log(error);
             });
-
-        }
-        $scope.validLoan = function(){
-            $scope.findUser();
-            if($scope.userFindNumLoans < 5){
-                console.log("valid");
-                return true;
-            }
-            else{
-                console.log("invalid");
-                return false;
-            }
         }
 
         $scope.updateUser = function() {
@@ -72,9 +56,10 @@ controllers.controller("LoansController", [
 
         $scope.saveLoan = function() {
             $scope.userFind = UserService.get({userId: $scope.loan.user_id});
+
             $scope.valid;
             $scope.userFind.$promise.then(function(data){
-                if(data.number_loans < 5){
+                if(data.number_loans < 5 && $scope.loan.book.quantity > 0){
                     $scope.valid = true;
                     $scope.userFindId = data.id;
 
@@ -86,11 +71,27 @@ controllers.controller("LoansController", [
                     console.log("userFindLoans Before: " + data.number_loans);
                     data.number_loans = data.number_loans + 1;
                     console.log("userFindLoans After: " + data.number_loans);
+                    console.log("book quantity before:" + $scope.loan.book.quantity );
+                    $scope.loan.book.quantity -= 1;
+                    console.log("book quantity after:" + $scope.loan.book.quantity );
+                    console.log($scope.loan.book);
+
                     $scope.updateUser();
-                    $location.path('/loans');
+                    $scope.updateBook();
+
+                    LoansService.create({loan: $scope.loan}, function() {
+                        $location.path('/loans');
+                    }, function(error){
+                        console.log(error);
+                    });
+
+
                 }
-                else{
+                else if(data.number_loans === 5){
                     alert("This user have 5 loans and is permited just 5 loans per user!");
+                }
+                else {
+                    alert("There isn't no other books for loaned");
                 }
             });
 
