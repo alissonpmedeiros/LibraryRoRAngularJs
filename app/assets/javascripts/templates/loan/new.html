@@ -16,7 +16,7 @@
                 <div class="form-group" ng-init="loadBooks()" >
                     <label class="col-md-1 control-label col-md-offset-1"></label>
                     <div class="col-md-8">
-                        <select name="book"  class="form-control" ng-model="loan.book" ng-options="book as book.title for book in books | orderBy:'title'">
+                        <select required="required" name="book"  class="form-control" ng-model="loan.book" ng-options="book as book.title for book in books | orderBy:'title'">
                             <option value="">Please, select a Book</option>
                         </select>
                     </div>

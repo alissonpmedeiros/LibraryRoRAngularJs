@@ -1,4 +1,3 @@
-
 <section ng-show="user.id && !user.address_registrable">
     <section id="login">
         <div class="container">
@@ -7,8 +6,8 @@
                     {{error}}
                     <div class="form-wrap">
                         <h1>Address</h1>
-                        <form role="form" id="login-form" autocomplete="off" ng-init="loadStates()">
-                            <div class="form-group" >
+                        <form role="form" id="login-form" autocomplete="off" >
+                            <div class="form-group" ng-init="loadStates()">
                                 <label for="email" class="sr-only">State</label>
                                 <select  class="form-control" ng-model="address.state_id" ng-options="state.id as state.name for state in states | orderBy:'name'">
                                     <option value="">Please, select a State</option>

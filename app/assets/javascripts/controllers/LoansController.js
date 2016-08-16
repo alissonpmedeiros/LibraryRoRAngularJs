@@ -2,8 +2,8 @@ var controllers;
 
 controllers = angular.module('controllers');
 controllers.controller("LoansController", [
-    '$scope', '$routeParams', '$location', '$resource', 'LoansService', 'LoanService','LoansSearchService', 'UsersService', 'UserService', 'BooksService', 'BookService',
-    function($scope, $routeParams, $location, $resource, LoansService, LoanService, LoansSearchService, UsersService, UserService, BooksService, BookService) {
+    '$scope', '$routeParams', '$location', '$resource', 'LoansService', 'LoanService','LoansSearchService', 'UsersService', 'UserService', 'BooksService', 'BookService', '$window',
+    function($scope, $routeParams, $location, $resource, LoansService, LoanService, LoansSearchService, UsersService, UserService, BooksService, BookService, $window) {
         $scope.searchLoan = function(searchTerm) {
             $scope.loans= [];
             $scope.loading = true;
@@ -16,11 +16,13 @@ controllers.controller("LoansController", [
         $scope.loadLoans = function() {
             $scope.loans = [];
             $scope.loans = LoansService.query();
+            //console.log($scope.loans);
         };
 
         $scope.loadUsers = function() {
             $scope.users = [];
             $scope.users = UsersService.query();
+            //console.log($scope.users);
         }
 
         $scope.loadBooks = function() {
@@ -28,15 +30,47 @@ controllers.controller("LoansController", [
             $scope.books = BooksService.query();
         }
 
+        $scope.updateUserDestroyed = function() {
+            UserService.update({userId: $scope.userDestroyed.id}, {user: $scope.userDestroyed}, function() {
+            }, function(error){
+                console.log(error);
+            });
+        }
 
         $scope.deleteLoan = function(loanId){
             if(confirm("Are you sure that you want destroy this Loan?")){
-                LoanService.delete({loanId: loanId}, function() {
-                    $scope.loadLoans();
-                    $location.path('/loans');
-                }, function(error){
-                    console.log(error);
+                $scope.userDestroyed  = $scope.loan.user;
+                console.log("User Before Destroyed:");
+                console.log($scope.userDestroyed);
+                $scope.userDestroyed.number_loans -= 1;
+                console.log("User After Destroyed:");
+                console.log($scope.userDestroyed);
+                $scope.updateUserDestroyed();
+                $scope.findLoan = LoanService.get({loanId: loanId});
+                console.log("FindLoan:");
+                console.log($scope.findLoan);
+                $scope.findLoan.$promise.then(function(data) {
+                    console.log("Book Before Destroyed:")
+                    console.log(data.book);
+                    data.book.quantity = data.book.quantity + 1;
+                    console.log("Book After Destroyed:")
+                    console.log(data.book);
+                    BookService.update({bookId: data.book.id}, {book: data.book}, function() {
+                    }, function(error){
+                        console.log(error);
+                    });
+
+                    LoanService.delete({loanId: loanId}, function() {
+                        $scope.loadLoans();
+                        $location.path('/loans/receive_loan');
+                        $window.location.reload();
+                    }, function(error){
+                        console.log(error);
+                    });
                 });
+
+
+
             }
         };
 
@@ -136,12 +170,20 @@ controllers.controller("LoansController", [
 
         }
 
+        $scope.receiveLoan = function() {
+            $location.path("/loans/receive_loan")
+        }
+
         $scope.showLoan = function(loanId) {
             $location.path('/loans/' + loanId);
         }
 
         $scope.editLoan = function(loanId) {
             $location.path('/loans/' + loanId + '/edit')
+        }
+
+        $scope.back = function() {
+            $location.path('/loans');
         }
 
         if($routeParams.loanId){

@@ -79,8 +79,14 @@ library.config([
         }).when('/loans', {                             // LOANS
             templateUrl: "loan/index.html",
             controller:  "LoansController"
-        }).when('/loans/new', {                             // LOANS
+        }).when('/loans/new', {
             templateUrl: "loan/new.html",
+            controller:  "LoansController"
+        }).when('/loans/receive_loan', {
+            templateUrl: "loan/receive_loan.html",
+            controller:  "LoansController"
+        }).when('/loans/:loanId', {
+            templateUrl: "loan/show.html",
             controller:  "LoansController"
         }).otherwise({                                  //OTHERWISE ROUTE
             redirectTo: '/'

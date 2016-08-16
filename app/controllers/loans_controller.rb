@@ -25,7 +25,7 @@ class LoansController < ApplicationController
 
   def show
     @loan = Loan.find(params[:id])
-    render json: @loan.as_json(include: :admin && :user && book)
+    render json: @loan.as_json(include: [:admin, :user, :book])
   end
 
   def create

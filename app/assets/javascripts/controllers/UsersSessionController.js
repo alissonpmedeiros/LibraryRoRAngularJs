@@ -12,6 +12,10 @@ controllers.controller("UsersSessionController", [
             });
         }
 
+        $scope.loadStates = function() {
+            $scope.states = StatesService.query();
+        }
+
         $scope.registerAddress = function() {
             $scope.address.user_id = $scope.user.id;
             $scope.user.address_registrable = true;
