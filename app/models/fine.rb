@@ -1,3 +1,3 @@
 class Fine < ActiveRecord::Base
-  has_one :loan
+  belongs_to :loan
 end

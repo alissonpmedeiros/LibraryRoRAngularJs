@@ -20,17 +20,19 @@
                             <div class="panel-heading">
                                 <h4 class="panel-title"><h4 class="h4 text-center">Outstanding Loans</h4></h4>
                             </div>
-                            <div class="panel-body" ng-repeat="loan in loan.user.loans">
-                                <div class="pull-right">
-                                    <button class="btn btn-info" ng-click="showLoan(loan.id)">
-                                        Loan Details
-                                    </button>
-                                    <button class="btn btn-danger" ng-click="deleteLoan(loan.id)">
-                                        Receive Loan
-                                    </button>
+                            <div class="panel-body" ng-repeat="loan in loan.user.loans | filter: {loaned: true}">
+                                <div>
+                                    <div class="pull-right">
+                                        <button class="btn btn-info" ng-click="showLoan(loan.id)">
+                                            Loan Details
+                                        </button>
+                                        <button class="btn btn-danger" ng-click="deleteLoan(loan.id)">
+                                            Receive Loan
+                                        </button>
+                                    </div>
+                                    <p>{{loan.created_at | date:'dd/MM/yyyy - HH:mm:ss'}}</p>
+                                    <hr>
                                 </div>
-                                <p>{{loan.created_at | date}}</p>
-                                <hr>
                             </div>
                         </div>
                     </div>
@@ -38,7 +40,7 @@
                 <div class="form-group">
                     <label class="col-md-1 control-label col-md-offset-1"></label>
                     <div class="col-md-8">
-                        <button ng-click="back()" class="col-md-12 btn btn-default btn-lg">
+                        <button ng-click="backIndex()" class="col-md-12 btn btn-default btn-lg">
                             Back to Loans
                         </button>
                     </div>
@@ -48,4 +50,3 @@
 
     </div>
 </div>
-

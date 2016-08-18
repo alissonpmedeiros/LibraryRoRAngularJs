@@ -2,8 +2,10 @@ var controllers;
 
 controllers = angular.module('controllers');
 controllers.controller("LoansController", [
-    '$scope', '$routeParams', '$location', '$resource', 'LoansService', 'LoanService','LoansSearchService', 'UsersService', 'UserService', 'BooksService', 'BookService', '$window',
-    function($scope, $routeParams, $location, $resource, LoansService, LoanService, LoansSearchService, UsersService, UserService, BooksService, BookService, $window) {
+    '$scope', '$routeParams', '$location', '$resource', 'LoansService', 'LoanService','LoansSearchService', 'UsersService', 'UserService', 'BooksService', 'BookService', '$window', '$filter', 'FinesService',
+    function($scope, $routeParams, $location, $resource, LoansService, LoanService, LoansSearchService, UsersService, UserService, BooksService, BookService, $window, $filter, FinesService) {
+
+
         $scope.searchLoan = function(searchTerm) {
             $scope.loans= [];
             $scope.loading = true;
@@ -37,6 +39,33 @@ controllers.controller("LoansController", [
             });
         }
 
+        $scope.LoanHaveFine = function(loan) {
+            var date = loan.created_at;
+
+            newDate = new Date(date);
+            currentDate = new Date();
+
+            var timeDiff = Math.abs(currentDate.getTime() - newDate.getTime());
+            var diffMinutes = Math.ceil(timeDiff / 60 / 1000 );
+
+
+            console.log("Loan  Date   : " + newDate);
+            console.log("Current Date: " + currentDate);
+            console.log("Difference Minutes:" + diffMinutes);
+
+            if(diffMinutes > 1){
+                console.log("there is FINE!!");
+                $scope.valueFine = (diffMinutes -1) * 0.5;
+                return true;
+            }
+            else {
+                console.log("there ISN'T fine!!");
+                return false;
+            }
+
+        }
+
+
         $scope.deleteLoan = function(loanId){
             if(confirm("Are you sure that you want destroy this Loan?")){
                 $scope.userDestroyed  = $scope.loan.user;
@@ -50,6 +79,8 @@ controllers.controller("LoansController", [
                 console.log("FindLoan:");
                 console.log($scope.findLoan);
                 $scope.findLoan.$promise.then(function(data) {
+                    console.log("data:");
+                    console.log(data);
                     console.log("Book Before Destroyed:")
                     console.log(data.book);
                     data.book.quantity = data.book.quantity + 1;
@@ -59,18 +90,33 @@ controllers.controller("LoansController", [
                     }, function(error){
                         console.log(error);
                     });
+                    //********************************************
+                    if($scope.LoanHaveFine(data)){
+                        $scope.fine = $scope.loan;
+                        $scope.fine.loan_id = data.id;
+                        $scope.fine.value = $scope.valueFine;
+                        console.log("FineLoan:");
+                        console.log($scope.fine);
+                        FinesService.create({fine: $scope.fine}, function() {
+                            console.log("Fine Save Sucessfully");
+                        }, function(error){
+                            console.log(error);
+                        });
+                    }
 
-                    LoanService.delete({loanId: loanId}, function() {
-                        $scope.loadLoans();
-                        $location.path('/loans/receive_loan');
-                        $window.location.reload();
+                    data.loaned = false;
+                    console.log("data before update");
+                    console.log(data.loaned);
+
+                    LoanService.update({loanId: loanId}, {loan: data}, function() {
+                        console.log("loan update sucessfully!");
+                        $location.path('/loans');
+                        //$window.location.reload();
                     }, function(error){
                         console.log(error);
                     });
+
                 });
-
-
-
             }
         };
 
@@ -88,6 +134,8 @@ controllers.controller("LoansController", [
             });
         }
 
+
+
         $scope.saveLoan = function() {
             $scope.userFind = UserService.get({userId: $scope.loan.user_id});
 
@@ -98,7 +146,7 @@ controllers.controller("LoansController", [
                 console.log("USER LOANS: ");
                 console.log(data);
                 data.loans.forEach(function(loan, key) {
-                    if(loan.book_id === $scope.loan.book.id ){
+                    if(loan.book_id === $scope.loan.book.id && loan.loaned === true ){
                         $scope.bookValid = false;
                         return;
                     }
@@ -183,6 +231,10 @@ controllers.controller("LoansController", [
         }
 
         $scope.back = function() {
+            $location.path('/loans/receive_loan');
+        }
+
+        $scope.backIndex = function() {
             $location.path('/loans');
         }
 
