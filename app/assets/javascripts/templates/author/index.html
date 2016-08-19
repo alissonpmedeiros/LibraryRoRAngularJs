@@ -1,7 +1,7 @@
-<section class="author" ng-show="user.admin">
+<section class="author" ng-show="user.id">
     <header>
         <div class="clearfix">
-            <div class="pull-right">
+            <div class="pull-right" ng-show="user.admin">
                 <button class="btn btn-lg btn-primary"  ng-click="newAuthor()">
                     New Author
                 </button>
@@ -31,7 +31,7 @@
                 <h2 class="h3">
                     {{ author.first_name }} {{ author.last_name }}
                 </h2>
-                <div class="pull-right">
+                <div class="pull-right" ng-show="user.id">
                     <buton class="btn btn-small btn-primary" ng-click="showAuthor(author.id)">
                         View Details...
                     </buton>

@@ -1,4 +1,4 @@
-<div class="col-md-8 col-md-offset-2" ng-show="user.admin">
+<div class="col-md-8 col-md-offset-2" ng-show="user.id">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h1 class="panel-title text-center">
@@ -6,26 +6,26 @@
             </h1>
         </div>
         <div class="panel-body">
-            <div ng-repeat="book in author.books">
-                <h3 class="h3">Book: <i>{{book.title}}</i></h3>
-            </div>
-            <hr>
             <h3 class="h3">Biography: <i>{{author.bio}}</i></h3>
+            <hr>
         </div>
         <br>
         <div class="panel-footer">
-            <div class="col-md-2">
-                <button ng-click="back()" class="btn btn-lg btn-default">Back</button>
-            </div>
-            <button ng-click="editAuthor(author.id)"
-                    class="btn btn-lg btn-warning">
-                Edit Author
-            </button>
-            <button ng-click="authorsBooks()"
-                    class="pull-right btn btn-lg btn-info">
-                Authors Books
-            </button>
-        </div>
+           <div class="row">
+               <button ng-click="authorsBooks()"
+                       class="pull-right btn btn-lg btn-info">
+                   Authors Books
+               </button>
+               <div class="col-md-3">
+                   <button ng-click="back()" class="col-md-10 btn btn-lg btn-default">Back</button>
+               </div>
+               <button ng-show="user.admin" ng-click="editAuthor(author.id)"
+                       class="btn btn-lg btn-warning">
+                   Edit Author
+               </button>
+
+           </div>
+           </div>
     </div>
 </div>
 
@@ -50,7 +50,7 @@
                         <tr ng-repeat="book in author.books">
                             <td class="h4">{{book.title}}</td>
                             <td class="h4">{{book.isbn}}</td>
-                            <td>
+                            <td ng-show="user.admin">
                                 <button ng-click="deleteAuthorBook(book)"
                                         class="col-md-8 btn btn-sm btn-danger">
                                     Delete
