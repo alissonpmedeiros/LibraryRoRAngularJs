@@ -6,7 +6,8 @@
         <li class="list-group-item clearfix" ng-repeat="fine in fines | orderBy:'-created_at'">
             <h3 class="pull-right"><small class="text-uppercase">Registered </small>{{ fine.created_at | date }}</h3>
             <h2 class="h3">
-                Value: {{fine.value}}
+                <p>User: {{fine.loan.user.email}}</p>
+                <p>Value: {{fine.value | currency}}</p>
             </h2>
             <div class="pull-right">
                 <buton class="btn btn-small btn-primary"

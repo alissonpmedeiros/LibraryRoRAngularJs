@@ -4,7 +4,9 @@ class FinesController < ApplicationController
 
     respond_to do |format|
       format.html {}
-      format.json {render json: @fines}
+      format.json {render json: @fines, :include => { :loan => {
+          :include => { :user => {
+              :only => :email } } } }}
     end
   end
 
