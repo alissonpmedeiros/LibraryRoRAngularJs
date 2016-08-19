@@ -19,7 +19,7 @@ class LoansController < ApplicationController
 
     respond_to do |format|
       format.html {}
-      format.json {render json: @loans}
+      format.json {render json: @loans, include: [:admin, :user, :book]}
     end
   end
 
