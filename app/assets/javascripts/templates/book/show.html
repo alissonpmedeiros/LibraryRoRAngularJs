@@ -1,4 +1,4 @@
-<div class="col-md-8 col-md-offset-2" ng-show="user.admin">
+<div class="col-md-8 col-md-offset-2" ng-show="user.id">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h1 class="panel-title text-center"><h1 class="h1 text-center">{{book.title}}</h1></h1>
@@ -13,10 +13,12 @@
         </div>
         <br>
         <div class="panel-footer">
-            <div class="col-md-2">
-                <button ng-click="back()" class="btn btn-lg btn-default">Back</button>
+            <div class="row">
+                <div class="col-md-3">
+                    <button ng-click="back()" class="col-md-9 btn btn-lg btn-default">Back</button>
+                </div>
+                <button ng-show="user.admin" ng-click="editBook(book.id)" class="btn btn-lg btn-warning">Edit Book</button>
             </div>
-            <button ng-click="editBook(book.id)" class="btn btn-lg btn-warning">Edit Book</button>
         </div>
 
 

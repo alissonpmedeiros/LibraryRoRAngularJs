@@ -26,13 +26,13 @@
     </header>
     <ol class="list-group">
         <li class="list-group-item clearfix" ng-repeat="book in books">
-            <h3 class="pull-right"><small class="text-uppercase">Joined </small>{{ book.created_at | date }}</h3>
+            <h3 class="pull-right"><small class="text-uppercase">Registered </small>{{ book.created_at | date }}</h3>
             <h2 class="h3">
                 {{ book.title}}
             </h2>
             <div class="pull-right">
                 <buton class="btn btn-small btn-primary" 
-                ng-click="showBook(book.id)" ng-show="user.admin">
+                ng-click="showBook(book.id)" ng-show="user.id">
                     View Details...
                 </buton>
             </div>
