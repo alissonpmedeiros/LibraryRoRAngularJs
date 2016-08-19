@@ -102,6 +102,12 @@ library.config([
         }).when('/loans/:loanId', {
             templateUrl: "loan/show.html",
             controller:  "LoansController"
+        }).when('/fines', {                             // FINES
+            templateUrl: "fine/index.html",
+            controller:  "FinesController"
+        }).when('/fines/:fineId', {
+            templateUrl: "fine/show.html",
+            controller:  "FinesController"
         }).otherwise({                                  //OTHERWISE ROUTE
             redirectTo: '/'
         });

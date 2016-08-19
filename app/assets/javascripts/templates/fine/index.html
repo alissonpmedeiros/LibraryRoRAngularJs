@@ -1,0 +1,19 @@
+<section class="search-results" ng-show = "user.admin">
+    <header>
+        <h2 class="h2">Fines</h2>
+    </header>
+    <ol class="list-group" ng-init="loadFines()">
+        <li class="list-group-item clearfix" ng-repeat="fine in fines | orderBy:'-created_at'">
+            <h3 class="pull-right"><small class="text-uppercase">Registered </small>{{ fine.created_at | date }}</h3>
+            <h2 class="h3">
+                Value: {{fine.value}}
+            </h2>
+            <div class="pull-right">
+                <buton class="btn btn-small btn-primary"
+                       ng-click="showFine(fine.id)">
+                    View Details...
+                </buton>
+            </div>
+        </li>
+    </ol>
+</section>

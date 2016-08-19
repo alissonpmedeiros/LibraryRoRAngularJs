@@ -1,0 +1,26 @@
+<div class="col-md-8 col-md-offset-2" ng-show="user.id">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1 class="panel-title text-center"><h1 class="h1 text-center">Created: {{fine.created_at | date}}</h1></h1>
+        </div>
+        <div class="panel-body">
+            <h3 class="h3">Value: <i>{{fine.value}}</i></h3>
+            <hr>
+            <h3 class="h3">Admin: <i>{{fine.loan.admin_id}}</i></h3>
+            <hr>
+            <h3 class="h3">User: <i>{{fine.loan.user_id}}</i></h3>
+            <hr>
+            <h3 class="h3">Book: <i>{{fine.loan.book_id}}</i></h3>
+        </div>
+        <br>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-md-3">
+                    <button ng-click="back()" class="col-md-9 btn btn-lg btn-default">Back</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
