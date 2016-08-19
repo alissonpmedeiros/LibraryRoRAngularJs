@@ -19,6 +19,7 @@
                 <li ng-if="!user.id" class="navLink"><a href="#/user_register">Register</a></li>
                 <li ng-if="user.id" class="navLink"><a href="" ng-click="authors()">Authors</a></li>
                 <li class="navLink"><a href="" ng-click="books()">Books</a></li>
+                <li ng-if="user.admin" class="navLink"><a href="" ng-click="categories()">Categories</a></li>
                 <li ng-if="user.admin" class="navLink"><a href="#/loans" >Loans</a></li>
                 <li ng-if="user.admin" class="navLink"><a href="" >Fines</a></li>
                 <li ng-if="user.admin" class="navLink"><a href="#/users" >Users</a></li>
