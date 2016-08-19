@@ -4,7 +4,7 @@ angular.module('library').factory('CategoriesService', ['$resource', function($r
         create: {method: 'POST'}
     })
 }]).factory('CategoryService', ['$resource', function($resource) {
-    return $resource('/categories/categoryId.json', {}, {
+    return $resource('/categories/:categoryId.json', {}, {
         show:   {method: 'GET'},
         update: {method: 'PUT',    params: {categoryId: '@id'}},
         delete: {method: 'DELETE', params: {categoryId: '@id'}}

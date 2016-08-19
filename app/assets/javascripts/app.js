@@ -72,6 +72,9 @@ library.config([
         }).when('/categories', {                       //CATEGORIES ROUTES
             templateUrl: "category/index.html",
             controller:  "CategoriesController"
+        }).when('/categories/new', {
+            templateUrl: "category/new.html",
+            controller:  "CategoriesController"
         }).when('/user_login', {                        // AUTHENTICATE USER
             templateUrl: "user_session/_login.html",
             controller:  "UsersSessionController"

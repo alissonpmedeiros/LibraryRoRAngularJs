@@ -9,16 +9,16 @@
             <h2 class="h2">Categories</h2>
         </div>
     </header>
-    <ol class="list-group">
-        <li class="list-group-item clearfix" ng-repeat="category in categories">
+    <ol class="list-group" ng-init="loadCategories()">
+        <li class="list-group-item clearfix" ng-repeat="category in categories | orderBy:'category_name'">
             <h3 class="pull-right"><small class="text-uppercase">Registered </small>{{ category.created_at | date }}</h3>
             <h2 class="h3">
                 {{category.category_name}}
             </h2>
             <div class="pull-right">
-                <buton class="btn btn-small btn-primary"
-                       ng-click="showCategory(book.id)">
-                    View Details...
+                <buton class="btn btn-small btn-danger"
+                       ng-click="deleteCategory(category.id)">
+                    Destroy Category
                 </buton>
             </div>
         </li>
