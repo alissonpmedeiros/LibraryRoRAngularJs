@@ -20,10 +20,21 @@ library = angular.module('library',
 //routes
 
 library.run(['$rootScope', '$location', function($rootScope, $location) {
-
+    $rootScope.$on('auth:logout-success', function() {
+        $location.path('/');
+    });
     $rootScope.$on('auth:registration-email-error', function(ev, reason) {
         alert("Registration failed: You have to provide correct email");
     });
+    $rootScope.$on('auth:auth-registration', function(ev, user) {
+        console.log(user.email);
+        alert('new user_session registered through oauth:' + user.email);
+    });
+
+    $rootScope.$on('auth:login-success', function() {
+        $location.path('/');
+    });
+
 }]);
 
 

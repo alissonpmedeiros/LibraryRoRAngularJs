@@ -36,14 +36,7 @@ controllers.controller("UsersSessionController", [
 
         });
 
-        $rootScope.$on('auth:auth-registration', function(ev, user) {
-            console.log(user.email);
-            alert('new user_session registered through oauth:' + user.email);
-        });
 
-        $rootScope.$on('auth:login-success', function() {
-            $location.path('/');
-        });
 
         $scope.$on('auth:login-error', function(ev, reason) {
             $scope.error = reason.errors[0];
