@@ -21,6 +21,10 @@ controllers.controller("LoansController", [
             //console.log($scope.loans);
         };
 
+        $scope.findLoanUser = function(userId) {
+            $scope.userLoanFind = UserService.get({userId: userId});
+        }
+
         $scope.loadUsers = function() {
             $scope.users = [];
             $scope.users = UsersService.query();
@@ -67,7 +71,7 @@ controllers.controller("LoansController", [
 
 
         $scope.deleteLoan = function(loanId){
-            if(confirm("Are you sure that you want destroy this Loan?")){
+            if(confirm("Are you sure that you want receive this Loan?")){
                 $scope.userDestroyed  = $scope.loan.user;
                 console.log("User Before Destroyed:");
                 console.log($scope.userDestroyed);

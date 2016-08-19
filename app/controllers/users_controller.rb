@@ -4,7 +4,9 @@ class UsersController < ApplicationController
     @users = User.all
     respond_to do |format|
       format.html {}
-      format.json {render json: @users, include: :loans}
+      format.json {render json: @users, :include => { :loans => {
+                                                      :include => { :book => {
+                                                          :only => :title } } } }}
     end
   end
 
