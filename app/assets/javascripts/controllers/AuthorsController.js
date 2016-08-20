@@ -5,6 +5,7 @@ controllers.controller("AuthorsController", [
     '$scope', '$routeParams', '$location', '$resource', 'AuthorsService', 'AuthorService','BooksService', 'AuthorSearchService',
     function($scope, $routeParams, $location, $resource, AuthorsService, AuthorService, BooksService, AuthorSearchService) {
 
+
         $scope.search = function(searchTerm) {
             $scope.authors = [];
             $scope.loading = true;

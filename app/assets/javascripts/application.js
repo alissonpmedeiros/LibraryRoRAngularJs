@@ -21,4 +21,6 @@
 //= require angular-cookie
 //= require ng-token-auth
 //= require_tree ./templates
+//= require pdfmake
+//= require vfs_fonts
 //= require_tree .

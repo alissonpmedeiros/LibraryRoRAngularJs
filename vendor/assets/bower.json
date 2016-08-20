@@ -7,6 +7,9 @@
     "bootstrap-sass-official": "latest",
     "angular-ui-router": "latest",
     "angular-cookies": "latest",
-    "ng-token-auth": "latest"
+    "ng-token-auth": "latest",
+    "angular-pdf-make": "latest"
+  },
+  "resolutions": {
   }
 }
