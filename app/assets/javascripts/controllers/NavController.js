@@ -17,5 +17,8 @@ controllers.controller("NavController", ['$scope', '$location',
         $scope.categories = function(){
             $location.path('/categories');
         }
+        $scope.userLoans = function() {
+            $location.path('/user/loans');
+        }
     }
 ]);

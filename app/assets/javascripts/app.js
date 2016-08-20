@@ -84,7 +84,13 @@ library.config([
         }).when('/user_register', {
             templateUrl: "user_session/_register.html",
             controller:  "UsersSessionController"
-        }).when('/users', {                             // USERS
+        }).when('/user/loans', {                             // USERS
+            templateUrl: "user/loans.html",
+            controller:  "UsersController"
+        }).when('/user/loans/:loanId', {
+            templateUrl: "user/show_user_loans.html",
+            controller:  "UsersController"
+        }).when('/users', {
             templateUrl: "user/index.html",
             controller:  "UsersController"
         }).when('/register_address', {                  // REGISTER ADDRESS FOR
