@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   resources :addresses
   resources :loans
   resources :fines
+  resources :request_books
+
+
   get '/search_authors', to: 'authors#searchAuthors'
   get '/search_books', to: 'books#searchBooks'
   get '/search_loans', to: 'loans#searchLoans'
