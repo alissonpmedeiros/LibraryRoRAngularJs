@@ -86,6 +86,9 @@ library.config([
         }).when('/user/loans/:loanId', {
             templateUrl: "user/show_user_loans.html",
             controller:  "UsersController"
+        }).when('/user/request_book', {
+            templateUrl: "user/request_book.html",
+            controller:  "UsersController"
         }).when('/users', {
             templateUrl: "user/index.html",
             controller:  "UsersController"

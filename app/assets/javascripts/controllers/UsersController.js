@@ -2,8 +2,8 @@ var controllers;
 
 controllers = angular.module('controllers');
 controllers.controller("UsersController", [
-    '$scope', '$routeParams', '$location', '$resource', 'UsersService', 'UserService', 'UserSearchService', 'LoansService', 'LoanService',
-    function($scope, $routeParams, $location, $resource, UsersService, UserService, UserSearchService, LoansService, LoanService) {
+    '$scope', '$routeParams', '$location', '$resource', 'UsersService', 'UserService', 'UserSearchService', 'LoansService', 'LoanService', 'BooksService', 'RequestBooksService',
+    function($scope, $routeParams, $location, $resource, UsersService, UserService, UserSearchService, LoansService, LoanService, BooksService, RequestBooksService) {
         $scope.users = [];
 
         $scope.search = function(searchTerm) {
@@ -14,6 +14,18 @@ controllers.controller("UsersController", [
             $scope.users = UserSearchService.searchUsers({keywords: searchTerm});
         }
 
+        $scope.loadBooks = function() {
+            $scope.booksForRequest = BooksService.query();
+        }
+
+        $scope.saveRequestBook = function() {
+            $scope.request_book.user_id = $scope.user.id;
+            RequestBooksService.create({request_book: $scope.request_book}, function() {
+                $location.path('/');
+            }, function(error){
+                console.log(error);
+            });
+        }
 
         $scope.loadUsers  = function() {
             $scope.users = UsersService.query();
@@ -54,6 +66,10 @@ controllers.controller("UsersController", [
         $scope.findUser = function() {
             $scope.user = UserService.get({userId: $routeParams.userId});
             //console.log($scope.author);
+        }
+
+        $scope.newRequestBook = function() {
+            $location.path('/user/request_book');
         }
 
 

@@ -18,6 +18,7 @@
                 <li ng-if="user.id" class="navLink"><a href="" ng-click="authors()">Authors</a></li>
                 <li class="navLink"><a href="" ng-click="books()">Books</a></li>
                 <li ng-if="!user.admin && user.id" class="navLink" ng-click="userLoans()" ><a href="" >Your Loans</a></li>
+                <li ng-if="!user.admin && user.id" class="navLink"  ><a href="#/user/request_book" >Request Book</a></li>
                 <li ng-if="user.admin" class="navLink"><a href="" ng-click="categories()">Categories</a></li>
                 <li ng-if="user.admin" class="navLink"><a href="#/loans" >Loans</a></li>
                 <li ng-if="user.admin" class="navLink"><a href="#/fines" >Fines</a></li>
