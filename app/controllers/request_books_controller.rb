@@ -1,0 +1,2 @@
+class RequestBooksController < ApplicationController
+end
