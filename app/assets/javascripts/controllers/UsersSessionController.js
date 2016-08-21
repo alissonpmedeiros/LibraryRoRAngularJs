@@ -22,28 +22,31 @@ controllers.controller("UsersSessionController", [
             $scope.updateCurrentUser();
             AddressesService.create({address: $scope.address}, function() {
                 $location.path('/');
-                $window.location.reload();
+                //$window.location.reload();
             }, function(error){
                 console.log(error);
             });
         };
         $rootScope.$on('auth:registration-email-success', function(ev, message) {
-            console.log($scope.address);
+            //$window.location.reload();
+            alert("registration email successfully!");
             $location.path('/');
-            //force reload index page
-            $window.location.reload();
-
-
+            //$window.location.reload();
+            $location.path('/');
         });
-
-
-
-        $scope.$on('auth:login-error', function(ev, reason) {
+        
+        $rootScope.$on('auth:login-error', function(ev, reason) {
             $scope.error = reason.errors[0];
         });
 
-        $scope.$on('auth:registration-email-error', function(ev, reason) {
+        $rootScope.$on('auth:registration-email-error', function(ev, reason) {
             alert("Registration failed: " + reason.errors[0]);
+        });
+
+        $rootScope.$on('auth:login-success', function() {
+            $location.path('/');
+            alert("Login Sucess!");
+            //$window.location.reload();
         });
 
     }
