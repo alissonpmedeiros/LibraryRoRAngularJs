@@ -1,13 +1,20 @@
-<br><br><br><br>
-<div class="col-md-6 col-md-offset-3">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h1 class="panel-title text-center"><h1 class="h1 text-center">Welcome</h1></h1>
-        </div>
-        <div class="panel-body" ng-if="user.id">
-            <h3 class="h3">Email: <i><b>{{user.email}}</b></i></h3>
-
-        </div>
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h1 class="text-inverse">Library Uepb</h1>
+        <p class="text-inverse">Virtual Management of Library UEPB.</p>
         <br>
+        <br>
+       <div ng-show="!user.id">
+       	  <a class="btn btn-lg btn-primary" href="#/user_login">Sign In</a>
+          <a class="btn btn-lg btn-info" href="#/user_register">Sign up</a>
+       </div>
+       <div ng-show="user.id">
+       	<a class="btn btn-lg btn-primary" href="" ng-click="signOut()">Logout</a>
+       </div>
+      </div>
     </div>
+  </div>
+</div>
 </div>
