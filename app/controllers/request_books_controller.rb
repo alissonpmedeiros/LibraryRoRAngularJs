@@ -3,7 +3,7 @@ class RequestBooksController < ApplicationController
     @request_books = RequestBook.all
     respond_to do |format|
       format.html {}
-      format.json {render json: @request_books, include: [:user, :book]}
+      format.json {render json: @request_books}
     end
   end
 

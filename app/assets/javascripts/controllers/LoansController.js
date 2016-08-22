@@ -2,8 +2,8 @@ var controllers;
 
 controllers = angular.module('controllers');
 controllers.controller("LoansController", [
-    '$scope', '$routeParams', '$location', '$resource', 'LoansService', 'LoanService','LoansSearchService', 'UsersService', 'UserService', 'BooksService', 'BookService', '$window', '$filter', 'FinesService',
-    function($scope, $routeParams, $location, $resource, LoansService, LoanService, LoansSearchService, UsersService, UserService, BooksService, BookService, $window, $filter, FinesService) {
+    '$scope', '$routeParams', '$location', '$resource', 'LoansService', 'LoanService','LoansSearchService', 'UsersService', 'UserService', 'BooksService', 'BookService', '$window', '$filter', 'FinesService', 'RequestBooksService',
+    function($scope, $routeParams, $location, $resource, LoansService, LoanService, LoansSearchService, UsersService, UserService, BooksService, BookService, $window, $filter, FinesService, RequestBooksService) {
 
 
         $scope.searchLoan = function(searchTerm) {
@@ -68,6 +68,9 @@ controllers.controller("LoansController", [
             }
 
         }
+
+
+
 
 
         $scope.deleteLoan = function(loanId){
@@ -138,15 +141,12 @@ controllers.controller("LoansController", [
             });
         }
 
-
-
         $scope.saveLoan = function() {
             $scope.userFind = UserService.get({userId: $scope.loan.user_id});
 
             $scope.valid;
             $scope.bookValid = true;
             $scope.userFind.$promise.then(function(data){
-
                 console.log("USER LOANS: ");
                 console.log(data);
                 data.loans.forEach(function(loan, key) {
@@ -250,3 +250,4 @@ controllers.controller("LoansController", [
 
     }
 ]);
+
